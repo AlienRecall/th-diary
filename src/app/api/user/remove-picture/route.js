@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import { deleteUser } from "@/app/lib/database";
+import { getUserById, resetImage } from "@/app/lib/database";
+import { unlink } from 'fs/promises';
+import path from "path";
 
 export async function POST(req) {
   const token_payload = JSON.parse(req.headers.get("x-token-payload"));
@@ -7,16 +9,17 @@ export async function POST(req) {
 
   try {
     let user = await getUserById(user_id);
-    if (user.image)
+    if (user.image) {
       await unlink(path.join(process.cwd(), "public/uploads/" + user.image));
-    await deleteUser(user_id);
+      await resetImage(user_id);
+    }
   } catch (err) {
     console.log(err);
     return NextResponse.json(
-      { success: false, error: "there was an error while deleting user" },
+      { success: false, error: "there was an error while deleting user image" },
       { status: 500 },
     );
   }
 
-  return NextResponse.redirect(new URL("/signup", req.url), 303);
+  return NextResponse.json({ success: true }, { status: 200 });
 }

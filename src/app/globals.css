@@ -3,25 +3,184 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1c1c1c;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid white;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+html {
+    /*visibility: hidden;*/
+}
+
+html.styled {
+    visibility: visible;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body,
+html {
+    background-color: #222831;
+    color: #eeeeee;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: "Arial", sans-serif;
+}
+
+header,
+footer {
+    width: 100%;
+}
+
+header {
+    background-color: #31363f;
+    color: #eeeeee;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #76abae;
+}
+
+.container {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    max-width: 100vw;
+    justify-content: space-between;
+}
+
+.title {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #eeeeee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.profile-icon img {
+    border-radius: 50%;
+}
+
+.footer {
+    background-color: #31363f;
+    color: #eeeeee;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 150px;
+    background-color: #31363f;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 8px 12px;
+}
+
+.dropdown-menu a {
+    display: block;
+    color: #eeeeee;
+    padding: 10px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: #76abae;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+}
+
+.new-post-button {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    padding: 10px;
+    background-color: #76abae;
+    color: #ffffff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.new-post-button:hover {
+    background-color: #4f8f8c;
+}
+
+.error-message {
+  color: #ff6b6b;
+  margin-bottom: 1rem;
+  font-size: 1rem;
 }

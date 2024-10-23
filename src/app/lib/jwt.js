@@ -2,22 +2,26 @@ import { SignJWT, jwtVerify } from "jose";
 
 const secret = Buffer.from(process.env.jwt_secret_key);
 
-export const createToken = async (username) => {
+export const createToken = async (user_id, username) => {
   const jwt = await new SignJWT({
     iss: "th-diary",
     sub: username,
     aud: "users",
+    id: user_id,
   })
-    .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime("1 hour")
+    .setProtectedHeader({ alg: "HS256" })
     .sign(secret);
-  return jwt;
+
+  var now = new Date();
+  now.setTime(now.getTime() + 1 * 3600 * 1000);
+  return { token: jwt, expires: now.toUTCString() };
 };
 
-export const verifyToken = (token) => {
+export const verifyToken = async (token) => {
   try {
-    const { payload } = jwtVerify(token, secret);
+    const { payload } = await jwtVerify(token, secret);
 
     console.log(payload);
     return payload;

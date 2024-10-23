@@ -1,24 +1,23 @@
 "use client";
 
 import React, { useEffect } from "react";
-import Loader from "./(pages)/components/Loader";
-import { useAuth } from "./(pages)/context/AuthContext";
+import Loader from "./../components/Loader";
+import { useAuth } from "./../context/AuthContext";
 import { useRouter } from "next/navigation";
 
 const HomePage = () => {
   const router = useRouter();
-  const { token } = useAuth();
+  const { setToken } = useAuth();
 
   useEffect(() => {
-    if (!token) {
-      router.push("/login");
-    } else {
-      router.push("/home");
-    }
-  }, [token, router]);
+    setToken(null);
+    router.push("/login");
+    router.refresh();
+  }, [setToken, router]);
 
   return (
     <div className="container">
+      Logging you out...
       <Loader />
     </div>
   );
