@@ -1,3 +1,33 @@
+## Before to start the project follow these steps:
+
+Clone the repository:
+
+```bash
+git clone https://github.com/AlienRecall/th-diary
+```
+
+Install deps:
+
+```bash
+npm install
+```
+
+Setup the database:
+
+```bash
+npm run dbsetup
+```
+
+Create your .env file in the root of the project with a JWT_SECRET_KEY variable:
+
+```bash
+$ vim .env
+...
+JWT_SECRET_KEY={random64byteskey}
+```
+
+Now you can start the project!
+##
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
