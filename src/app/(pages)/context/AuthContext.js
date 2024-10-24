@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
 
     if (!res.ok || res.status == 404) {
       updateToken(null);
-      router.push("/login");
+      router.push("/signup");
       return;
     }
     const json = await res.json();
