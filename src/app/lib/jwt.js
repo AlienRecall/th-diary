@@ -1,6 +1,6 @@
 import { SignJWT, jwtVerify } from "jose";
 
-const secret = Buffer.from(process.env.jwt_secret_key);
+const secret = Buffer.from(process.env.JWT_SECRET_KEY);
 
 export const createToken = async (user_id, username) => {
   const jwt = await new SignJWT({

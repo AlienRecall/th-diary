@@ -186,7 +186,7 @@ const deletePost = (post_id, author_id) => {
 };
 
 export {
-  // db,
+  db,
   getUserById,
   getUserByUsername,
   registerUser,

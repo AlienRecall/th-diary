@@ -58,7 +58,6 @@ const LoginPage = () => {
           <div className="form-group">
             <label htmlFor="email">Username or email:</label>
             <input
-              type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

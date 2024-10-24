@@ -55,6 +55,12 @@ const Home = () => {
     getPosts();
   }, [router]);
 
+  const formatDate = (d) => {
+    const gmtDate = new Date(d);
+    const localDate = new Date(gmtDate.getTime() - gmtDate.getTimezoneOffset() * 60000);
+    return formatDistanceToNow(localDate, { addSuffix: true })
+  }
+
   return (
     loading ? <Loader /> : <div className="container">
       <Header />
@@ -68,9 +74,7 @@ const Home = () => {
                   <h2 className="post-title">{post.title}</h2>
                 </Link>
                 <p className="post-content">{post.text.length > 60 ? post.text.substr(0, 60) + "..." : post.text}</p>
-                <p className="post-created">
-                  {formatDistanceToNow(new Date(post.created_at), { addSuffix: true })}
-                </p>
+                <p className="post-created">{formatDate(post.created_at)}</p>
                 <button className="delete-button" onClick={() => deletePost(post.id)}>
                   Delete
                 </button>

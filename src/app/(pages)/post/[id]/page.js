@@ -6,7 +6,7 @@ import { useAuth } from "./../../context/AuthContext";
 import Loader from "./../../components/Loader";
 import Header from "./../../components/Header";
 import Footer from "./../../components/Footer";
-import { format } from "date-fns";
+import { formatCreatedAt } from "./../../../lib/utils";
 import "./post.css";
 
 const PostPage = () => {
@@ -66,7 +66,7 @@ const PostPage = () => {
             <h1 className="post-title">{post.title}</h1>
             <p className="post-text">{post.text}</p>
             <p className="post-created">
-              Created at: {format(new Date(post.created_at), "yyyy-MM-dd HH:mm:ss")}
+              Created at: {formatCreatedAt(post.created_at)}
             </p>
             <div className="button-container">
               <button

@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS Users (
     email TEXT NOT NULL UNIQUE,
     first_name TEXT,
     last_name TEXT,
-    image_url TEXT,
+    image TEXT,
     created_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
     updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp
 );
