@@ -25,8 +25,11 @@ export const AuthProvider = ({ children }) => {
       }
     });
 
-    if (!res.ok)
+    if (!res.ok || res.status == 404) {
+      updateToken(null);
+      router.push("/login");
       return;
+    }
     const json = await res.json();
     if (!json.success)
       return;
@@ -43,6 +46,9 @@ export const AuthProvider = ({ children }) => {
       }
     });
   }
+
+  // eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ0aC1kaWFyeSIsInN1YiI6Imx1a2UiLCJhdWQiOiJ1c2VycyIsImlkIjoxLCJpYXQiOjE3Mjk3Njk1ODUsImV4cCI6MTcyOTc3MzE4NX0.oaWBIQVmbgz6ezKw1CTYPCr-BwlbPTZwNV0r3WEBLgE
+  // Thu, 24 Oct 2024 12:33:05 GMT
 
   const updateToken = (newToken, expires = null) => {
     setToken(newToken);

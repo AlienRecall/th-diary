@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { deleteUser } from "@/app/lib/database";
+import { getUserById, deleteUser } from "@/app/lib/database";
 
 export async function POST(req) {
   const token_payload = JSON.parse(req.headers.get("x-token-payload"));
